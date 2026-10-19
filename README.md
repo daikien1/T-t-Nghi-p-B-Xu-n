@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiệp mời tốt nghiệp</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+        body {
+            background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+            min-height: 100vh;
+            padding: 2rem 1.5rem;
+        }
+        .card-container {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+            perspective: 1500px;
+            min-height: 90vh;
+        }
+        .card-envelope {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-height: 80vh;
+            background: linear-gradient(135deg, #FF66FF, #c92a2a);
+            border-radius: 12px;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transform-origin: top center;
+            transition: transform 1s ease-in-out, opacity 0.8s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        .envelope-text {
+            color: #fff;
+            text-align: center;
+            padding: 2rem;
+        }
+        .envelope-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            letter-spacing: 0.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .envelope-text p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+        .envelope-text .tap-hint {
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            opacity: 0.6;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+        .card-envelope.opened {
+            transform: rotateX(180deg);
+            opacity: 0;
+            pointer-events: none;
+        }
+        .card-content {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2.5rem 1.5rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease 0.3s;
+        }
+        .card-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .year-top {
+            font-size: 1.2rem;
+            letter-spacing: 0.3rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #0f1f3c;
+            text-align: center;
+        }
+        .subtitle {
+            font-size: 1rem;
+            color: #444;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: #c9a227;
+            margin: 1rem auto;
+        }
+        .intro {
+            font-size: 1.05rem;
+            font-style: italic;
+            color: #333;
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        /* ========== KHUNG THÔNG TIN MỚI — giống mẫu ========== */
+        .info-frame {
+            position: relative;
+            border: 1px solid #d4a877;
+            padding: 2rem 1.8rem;
+            margin: 2rem 0;
+            background: #fffdf9;
+        }
+        /* Nét góc trang trọng ở 4 góc */
+        .info-frame::before,
+        .info-frame::after,
+        .info-frame .corner-br,
+        .info-frame .corner-bl {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-color: #d4a877;
+            border-style: solid;
+            pointer-events: none;
+        }
+        .info-frame::before {
+            top: -1px;
+            left: -1px;
+            border-width: 2px 0 0 2px;
+        }
+        .info-frame::after {
+            top: -1px;
+            right: -1px;
+            border-width: 2px 2px 0 0;
+        }
+        .info-frame .corner-br {
+            bottom: -1px;
+            right: -1px;
+            border-width: 0 2px 2px 0;
+        }
+        .info-frame .corner-bl {
+            bottom: -1px;
+            left: -1px;
+            border-width: 0 0 2px 2px;
+        }
+        .info-frame .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #222;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #d4a877;
+        }
+        .info-frame .date-row {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 1.5rem;
+        }
+        .info-frame .date-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #222;
+            line-height: 1;
+        }
+        .info-frame .date-detail {
+            margin-left: 1rem;
+            color: #8b5a2b;
+            line-height: 1.5;
+        }
+        .info-frame .date-detail strong {
+            color: #222;
+            font-weight: 600;
+        }
+        .info-frame .info-line {
+            display: flex;
+            margin: 1rem 0;
+        }
+        .info-frame .info-line .label {
+            min-width: 70px;
+            color: #8b5a2b;
+            font-weight: 500;
+        }
+        .info-frame .info-line .value {
+            color: #333;
+            font-weight: 500;
+        }
+        /* ===================================================== */
+
+        .quote {
+            font-style: italic;
+            color: #444;
+            padding: 0 1rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .countdown-section {
+            margin: 2.5rem 0;
+            text-align: center;
+        }
+        .countdown-title {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .count-item {
+            background: #0f1f3c;
+            color: #fff;
+            width: 90px;
+            padding: 1rem 0.5rem;
+            border-radius: 8px;
+        }
+        .count-num {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+        .count-label {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        .calendar {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.3rem;
+            font-size: 0.9rem;
+            max-width: 350px;
+            margin: 0 auto;
+        }
+        .calendar-day-header {
+            font-weight: 600;
+            color: #666;
+            padding: 0.5rem 0;
+        }
+        .calendar-day {
+            padding: 0.5rem 0;
+            border-radius: 6px;
+        }
+        .calendar-day.highlight {
+            background: #0f1f3c;
+            color: #fff;
+            font-weight: 600;
+        }
+        .footer {
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            color: #888;
+            text-align: center;
+        }
+        /* === ẢNH CÁ NHÂN === */
+        .profile-img-container {
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        .profile-img {
+            max-width: 200px;
+            width: 70%;
+            border-radius: 50%;
+            border: 4px solid #ffd700;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            object-fit: cover;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container" id="cardContainer">
+        <!-- BÌA THIỆP - NHẤN ĐỂ MỞ -->
+        <div class="card-envelope" id="envelope" onclick="openCard()">
+            <div class="envelope-text">
+                <h2>THIỆP MỜI TỐT NGHIỆP 2026</h2>
+                <div class="profile-img-container">
+                    <img 
+                        src="f16839f590eb10b549fa.jpg"
+                        alt="Đổng Thị Thủy Tiên"
+                        class="profile-img"
+                    >
+                </div>
+                <p style="font-family: 'Great Vibes', cursive; font-size: 2rem; margin: 1rem 0; color: #ffd700;">Đổng Thị Thủy Tiên</p>
+                <p style="font-family: 'Quicksand', sans-serif; font-size: 1rem; opacity: 0.9;">Trường Đại Học Công Nghiệp - IUH</p>
+                <p class="tap-hint">👆 Nhấn để mở thiệp</p>
+            </div>
+        </div>
+
+        <!-- NỘI DUNG BÊN TRONG -->
+        <div class="card-content" id="cardContent">
+            <p class="year-top">2026</p>
+            <h1>LỄ TỐT NGHIỆP</h1>
+            <div class="divider"></div>
+            
+            <div class="profile-img-container">
+                <img 
+                    src="f16839f590eb10b549fa.jpg"
+                    alt="Đổng Thị Thủy Tiên"
+                    class="profile-img"
+                >
+            </div>
+            
+            <h1>Đổng Thị Thủy Tiên</h1>
+            <p class="subtitle">Trường Đại Học Công Nghiệp - IUH</p>
+            <p class="intro">"Tốt nghiệp không phải là kết thúc mà là cột mốc của sự trưởng thành. Tốt nghiệp không đơn thuần là chia ly mà còn là chuẩn bị cho cuộc hội ngộ tươi đẹp sắp đến."</p>
+
+            <!-- ========== KHUNG THÔNG TIN MỚI ========== -->
+            <div class="info-frame">
+                <span class="corner-br"></span>
+                <span class="corner-bl"></span>
+                
+                <h3 class="section-title">Lễ trao bằng tốt nghiệp</h3>
+                
+                <div class="date-row">
+                    <div class="date-num">26</div>
+                    <div class="date-detail">
+                        <strong>Tháng 11 · 2026</strong><br>
+                        Thứ Năm
+                    </div>
+                </div>
+                
+                <div class="info-line">
+                    <span class="label">GIỜ</span>
+                    <span class="value">09:30</span>
+                </div>
+                
+                <div class="info-line">
+                    <span class="label">ĐỊA ĐIỂM</span>
+                    <span class="value">Trường Đại Học Công Nghiệp - IUH</span>
+                </div>
+            </div>
+            <!-- ======================================== -->
+
+            <div class="invite-text" style="text-align: center; margin: 1rem 0;">
+                <p><strong>Người mời: Đổng Thị Thủy Tiên</strong></p>
+                <p>Mình rất mong bạn có mặt trong buổi lễ tốt nghiệp của mình.</p>
+            </div>
+            
+            <p class="quote">
+                "Tốt nghiệp không phải là kết thúc mà là cột mốc của sự trưởng thành.<br>
+                Tốt nghiệp không đơn thuần là chia ly mà còn là chuẩn bị cho cuộc hội ngộ tươi đẹp sắp đến."
+            </p>
+            
+            <div class="countdown-section">
+                <p class="countdown-title">Đếm ngược tới giờ lễ</p>
+                <div class="countdown">
+                    <div class="count-item">
+                        <div class="count-num" id="days">00</div>
+                        <div class="count-label">Ngày</div>
+                    </div>
+                    <div class="count-item">
+                        <div class="count-num" id="hours">00</div>
+                        <div class="count-label">Giờ</div>
+                    </div>
+                    <div class="count-item">
+                        <div class="count-num" id="minutes">00</div>
+                        <div class="count-label">Phút</div>
+                    </div>
+                    <div class="count-item">
+                        <div class="count-num" id="seconds">00</div>
+                        <div class="count-label">Giây</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="calendar">
+                <p style="margin-bottom: 0.8rem; font-weight: 600;">Tháng 11 - 2026</p>
+                <div class="calendar-grid">
+                    <div class="calendar-day-header">T2</div>
+                    <div class="calendar-day-header">T3</div>
+                    <div class="calendar-day-header">T4</div>
+                    <div class="calendar-day-header">T5</div>
+                    <div class="calendar-day-header">T6</div>
+                    <div class="calendar-day-header">T7</div>
+                    <div class="calendar-day-header">CN</div>
+                    <div class="calendar-day">1</div><div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div>
+                    <div class="calendar-day">8</div><div class="calendar-day">9</div><div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div>
+                    <div class="calendar-day">15</div><div class="calendar-day">16</div><div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day">21</div>
+                    <div class="calendar-day">22</div><div class="calendar-day">23</div><div class="calendar-day">24</div><div class="calendar-day">25</div><div class="calendar-day highlight">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div>
+                    <div class="calendar-day">29</div><div class="calendar-day">30</div>
+                </div>
+            </div>
+            
+            <div class="footer">
+                Đổng Thị Thủy Tiên · 2026
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const eventDate = new Date('2026-11-26T09:30:00');
+        
+        function openCard() {
+            document.getElementById('envelope').classList.add('opened');
+            setTimeout(() => {
+                document.getElementById('cardContent').classList.add('visible');
+            }, 600);
+        }
+        
+        function updateCountdown() {
+            const now = new Date();
+            const diff = eventDate - now;
+            
+            if (diff <= 0) {
+                document.getElementById('days').innerText = '00';
+                document.getElementById('hours').innerText = '00';
+                document.getElementById('minutes').innerText = '00';
+                document.getElementById('seconds').innerText = '00';
+                return;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').innerText = String(days).padStart(2, '0');
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        }
+        
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
