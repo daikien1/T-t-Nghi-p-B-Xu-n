@@ -192,12 +192,12 @@
             display: flex;
             margin: 1rem 0;
         }
-        .info-frame .info-line .label {
+        .info-line .label {
             min-width: 70px;
             color: #8b5a2b;
             font-weight: 500;
         }
-        .info-frame .info-line .value {
+        .info-line .value {
             color: #333;
             font-weight: 500;
         }
@@ -237,7 +237,7 @@
             font-size: 0.8rem;
             opacity: 0.8;
         }
-        /* ========== LỊCH CÓ KHUNG + TRÁI TIM ========== */
+        /* ========== LỊCH ĐÃ SỬA: Chủ Nhật đầu tiên ========== */
         .calendar {
             margin: 2rem 0;
             text-align: center;
@@ -300,24 +300,27 @@
             color: #000;
             font-weight: 600;
         }
-      .calendar-day.highlight {
-    background: transparent;
-    color: inherit;
-    position: relative;
-    font-size: inherit;
-}
-
-.calendar-day.highlight::before {
-    content: '✩';
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 1.2rem;
-    color: #c9a227;
-}
+        .calendar-day.highlight {
+            background: transparent;
+            color: inherit;
+            position: relative;
+            font-size: inherit;
         }
-        /* ========== KHUNG BẢN ĐỒ ĐÚNG ĐỊA CHỈ BẠN YÊU CẦU ========== */
+        .calendar-day.highlight::before {
+            content: '✩';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            color: #c9a227;
+        }
+        /* Ngày Chủ Nhật làm nổi bật nhẹ */
+        .calendar-day-header:first-child,
+        .sunday-day {
+            color: #c92a2a;
+        }
+        /* ========== KHUNG BẢN ĐỒ ========== */
         .map-frame {
             position: relative;
             border: 1px solid #d4a877;
@@ -458,7 +461,7 @@
                 </div>
             </div>
             
-            <p class="quote">"Tốt nghiệp không đơn thuần là chia ly mà còn là chuẩn bị cho cuộc hội ngộ tươi đẹp sắp đến."</p>
+            <p class="quote">"Em trân trọng kính mời cô đến dự Lễ Tốt nghiệp và chia vui cùng em trong ngày trọng đại này ạ!"</p>
             
             <div class="countdown-section">
                 <p class="countdown-title">Đếm ngược tới giờ lễ</p>
@@ -470,28 +473,65 @@
                 </div>
             </div>
             
-            <!-- LỊCH -->
+            <!-- LỊCH ĐÃ SỬA: Chủ Nhật đầu, đúng cấu trúc tháng 11/2026 -->
             <div class="calendar">
                 <span class="corner-br"></span>
                 <span class="corner-bl"></span>
                 <p style="margin-bottom: 0.8rem; font-weight: 600;">Tháng 11 - 2026</p>
                 <div class="calendar-grid">
+                    <!-- ĐẦU TIÊN: Chủ Nhật -->
+                    <div class="calendar-day-header">CN</div>
                     <div class="calendar-day-header">T2</div>
                     <div class="calendar-day-header">T3</div>
                     <div class="calendar-day-header">T4</div>
                     <div class="calendar-day-header">T5</div>
                     <div class="calendar-day-header">T6</div>
                     <div class="calendar-day-header">T7</div>
-                    <div class="calendar-day-header">CN</div>
-                    <div class="calendar-day">1</div><div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div>
-                    <div class="calendar-day">8</div><div class="calendar-day">9</div><div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div>
-                    <div class="calendar-day">15</div><div class="calendar-day">16</div><div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day">21</div>
-                    <div class="calendar-day">22</div><div class="calendar-day">23</div><div class="calendar-day">24</div><div class="calendar-day">25</div><div class="calendar-day highlight">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div>
-                    <div class="calendar-day">29</div><div class="calendar-day">30</div>
+                    
+                    <!-- Tháng 11/2026: Ngày 1 rơi vào Chủ Nhật ✅ -->
+                    <div class="calendar-day sunday-day">1</div>
+                    <div class="calendar-day">2</div>
+                    <div class="calendar-day">3</div>
+                    <div class="calendar-day">4</div>
+                    <div class="calendar-day">5</div>
+                    <div class="calendar-day">6</div>
+                    <div class="calendar-day">7</div>
+                    
+                    <div class="calendar-day sunday-day">8</div>
+                    <div class="calendar-day">9</div>
+                    <div class="calendar-day">10</div>
+                    <div class="calendar-day">11</div>
+                    <div class="calendar-day">12</div>
+                    <div class="calendar-day">13</div>
+                    <div class="calendar-day">14</div>
+                    
+                    <div class="calendar-day sunday-day">15</div>
+                    <div class="calendar-day">16</div>
+                    <div class="calendar-day">17</div>
+                    <div class="calendar-day">18</div>
+                    <div class="calendar-day">19</div>
+                    <div class="calendar-day">20</div>
+                    <div class="calendar-day">21</div>
+                    
+                    <div class="calendar-day sunday-day">22</div>
+                    <div class="calendar-day">23</div>
+                    <div class="calendar-day">24</div>
+                    <div class="calendar-day">25</div>
+                    <div class="calendar-day highlight">26</div>
+                    <div class="calendar-day">27</div>
+                    <div class="calendar-day">28</div>
+                    
+                    <div class="calendar-day sunday-day">29</div>
+                    <div class="calendar-day">30</div>
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day"></div>
                 </div>
             </div>
             
-            <!-- BẢN ĐỒ ĐÚNG ĐỊA CHỈ 12 NGUYỄN VĂN BẢO, HẠNH THÔNG -->
+            <!-- BẢN ĐỒ -->
             <div class="map-frame">
                 <span class="corner-br"></span>
                 <span class="corner-bl"></span>
