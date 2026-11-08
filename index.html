@@ -119,7 +119,6 @@
             margin-bottom: 2.5rem;
             text-align: center;
         }
-        /* ========== KHUNG THÔNG TIN ========== */
         .info-frame {
             position: relative;
             border: 1px solid #d4a877;
@@ -237,7 +236,6 @@
             font-size: 0.8rem;
             opacity: 0.8;
         }
-        /* ========== LỊCH ĐÃ SỬA: Chủ Nhật đầu tiên ========== */
         .calendar {
             margin: 2rem 0;
             text-align: center;
@@ -299,10 +297,7 @@
         .calendar-day.highlight {
             color: #000;
             font-weight: 600;
-        }
-        .calendar-day.highlight {
             background: transparent;
-            color: inherit;
             position: relative;
             font-size: inherit;
         }
@@ -315,12 +310,10 @@
             font-size: 1.2rem;
             color: #c9a227;
         }
-        /* Ngày Chủ Nhật làm nổi bật nhẹ */
         .calendar-day-header:first-child,
         .sunday-day {
             color: #c92a2a;
         }
-        /* ========== KHUNG BẢN ĐỒ ========== */
         .map-frame {
             position: relative;
             border: 1px solid #d4a877;
@@ -414,7 +407,6 @@
 </head>
 <body>
     <div class="card-container" id="cardContainer">
-        <!-- BÌA THIỆP -->
         <div class="card-envelope" id="envelope" onclick="openCard()">
             <div class="envelope-text">
                 <h2>THIỆP MỜI TỐT NGHIỆP 2026</h2>
@@ -427,7 +419,6 @@
             </div>
         </div>
 
-        <!-- NỘI DUNG CHÍNH -->
         <div class="card-content" id="cardContent">
             <p class="year-top">2026</p>
             <h1>LỄ TỐT NGHIỆP</h1>
@@ -473,122 +464,8 @@
                 </div>
             </div>
             
-            <!-- LỊCH ĐÃ SỬA: Chủ Nhật đầu, đúng cấu trúc tháng 11/2026 -->
             <div class="calendar">
                 <span class="corner-br"></span>
                 <span class="corner-bl"></span>
                 <p style="margin-bottom: 0.8rem; font-weight: 600;">Tháng 11 - 2026</p>
-                <div class="calendar-grid">
-                    <!-- ĐẦU TIÊN: Chủ Nhật -->
-                    <div class="calendar-day-header">CN</div>
-                    <div class="calendar-day-header">T2</div>
-                    <div class="calendar-day-header">T3</div>
-                    <div class="calendar-day-header">T4</div>
-                    <div class="calendar-day-header">T5</div>
-                    <div class="calendar-day-header">T6</div>
-                    <div class="calendar-day-header">T7</div>
-                    
-                    <!-- Tháng 11/2026: Ngày 1 rơi vào Chủ Nhật ✅ -->
-                    <div class="calendar-day sunday-day">1</div>
-                    <div class="calendar-day">2</div>
-                    <div class="calendar-day">3</div>
-                    <div class="calendar-day">4</div>
-                    <div class="calendar-day">5</div>
-                    <div class="calendar-day">6</div>
-                    <div class="calendar-day">7</div>
-                    
-                    <div class="calendar-day sunday-day">8</div>
-                    <div class="calendar-day">9</div>
-                    <div class="calendar-day">10</div>
-                    <div class="calendar-day">11</div>
-                    <div class="calendar-day">12</div>
-                    <div class="calendar-day">13</div>
-                    <div class="calendar-day">14</div>
-                    
-                    <div class="calendar-day sunday-day">15</div>
-                    <div class="calendar-day">16</div>
-                    <div class="calendar-day">17</div>
-                    <div class="calendar-day">18</div>
-                    <div class="calendar-day">19</div>
-                    <div class="calendar-day">20</div>
-                    <div class="calendar-day">21</div>
-                    
-                    <div class="calendar-day sunday-day">22</div>
-                    <div class="calendar-day">23</div>
-                    <div class="calendar-day">24</div>
-                    <div class="calendar-day">25</div>
-                    <div class="calendar-day highlight">26</div>
-                    <div class="calendar-day">27</div>
-                    <div class="calendar-day">28</div>
-                    
-                    <div class="calendar-day sunday-day">29</div>
-                    <div class="calendar-day">30</div>
-                    <div class="calendar-day"></div>
-                    <div class="calendar-day"></div>
-                    <div class="calendar-day"></div>
-                    <div class="calendar-day"></div>
-                    <div class="calendar-day"></div>
-                </div>
-            </div>
-            
-            <!-- BẢN ĐỒ -->
-            <div class="map-frame">
-                <span class="corner-br"></span>
-                <span class="corner-bl"></span>
-                
-                <h3 class="section-title">Địa chỉ</h3>
-                <p class="section-title" style="font-size: 1.1rem;">Trường Đại học Công nghiệp TP.HCM (IUH)</p>
-                <p class="address">12 Nguyễn Văn Bảo, Hạnh Thông, Gò Vấp, Hồ Chí Minh 700000, Việt Nam</p>
-                
-                <iframe 
-                    class="map-embed"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.97!2d106.68027!3d10.82586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175294c0cd1e74f%3A0xe6a1f59e18c56e0!2zMTIgTmd1eeG7hW4gVmFuIEJhbywgSGFuaCBUaG9uZywgR28gVmlwLCBUUC5IQ00!5e0!3m2!1svi!2s!4v1729472000000!5m2!1svi!2s"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-                
-                <a class="map-link-btn" 
-                   href="https://www.google.com/maps/dir/?api=1&destination=12+Nguyễn+Văn+Bảo+Hạnh+Thông+Gò+Vấp+Hồ+Chí+Minh"
-                   target="_blank">
-                   📍 Nhấn vào đây để xem chỉ đường
-                </a>
-            </div>
-            
-            <div class="footer">
-                Đổng Thị Thủy Tiên · 2026
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const eventDate = new Date('2026-11-26T10:00:00');
-        
-        function openCard() {
-            document.getElementById('envelope').classList.add('opened');
-            setTimeout(() => {
-                document.getElementById('cardContent').classList.add('visible');
-            }, 600);
-        }
-        
-        function updateCountdown() {
-            const now = new Date();
-            const diff = eventDate - now;
-            if (diff <= 0) {
-                ['days','hours','minutes','seconds'].forEach(id=>document.getElementById(id).innerText='00');
-                return;
-            }
-            const days = Math.floor(diff / (1000*60*60*24));
-            const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-            const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
-            const seconds = Math.floor((diff % (1000*60)) / 1000);
-            document.getElementById('days').innerText = String(days).padStart(2,'0');
-            document.getElementById('hours').innerText = String(hours).padStart(2,'0');
-            document.getElementById('minutes').innerText = String(minutes).padStart(2,'0');
-            document.getElementById('seconds').innerText = String(seconds).padStart(2,'0');
-        }
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-    </script>
-</body>
-</html>
+               
