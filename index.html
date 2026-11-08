@@ -297,7 +297,10 @@
         .calendar-day.highlight {
             color: #000;
             font-weight: 600;
+        }
+        .calendar-day.highlight {
             background: transparent;
+            color: inherit;
             position: relative;
             font-size: inherit;
         }
@@ -407,6 +410,7 @@
 </head>
 <body>
     <div class="card-container" id="cardContainer">
+        <!-- BÌA THIỆP -->
         <div class="card-envelope" id="envelope" onclick="openCard()">
             <div class="envelope-text">
                 <h2>THIỆP MỜI TỐT NGHIỆP 2026</h2>
@@ -419,6 +423,7 @@
             </div>
         </div>
 
+        <!-- NỘI DUNG CHÍNH -->
         <div class="card-content" id="cardContent">
             <p class="year-top">2026</p>
             <h1>LỄ TỐT NGHIỆP</h1>
@@ -464,8 +469,7 @@
                 </div>
             </div>
             
+            <!-- LỊCH ĐÃ SỬA: Chủ Nhật đầu, đúng cấu trúc tháng 11/2026 -->
             <div class="calendar">
                 <span class="corner-br"></span>
-                <span class="corner-bl"></span>
-                <p style="margin-bottom: 0.8rem; font-weight: 600;">Tháng 11 - 2026</p>
-               
+                <span class="corner
