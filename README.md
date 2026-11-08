@@ -343,7 +343,7 @@
                 
                 <div class="info-line">
                     <span class="label">GIỜ</span>
-                    <span class="value">09:30</span>
+                    <span class="value">10:00</span>
                 </div>
                 
                 <div class="info-line">
